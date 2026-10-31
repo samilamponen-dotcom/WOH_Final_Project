@@ -4,7 +4,7 @@ function NavBar() {
   return (
     <nav className="navbar">
         <div className="container">
-            <Link to="/" className="Navbar-brand">PokeApp</Link>
+            <Link to="/" className="navbar-brand">PokeApp</Link>
 
             <button
             className = "navbar-toggler"
