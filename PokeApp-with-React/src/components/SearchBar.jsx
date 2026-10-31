@@ -4,14 +4,17 @@ function SearchBar({ onSearch }) {
     const [searchTerm, setSearchTerm] = useState("");
     
     return (
-        <div>
+        <div className = "input-group">
             <input
+                classname="form-control"
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search Pokémon"
             />
-            <button type="button">Search</button>
+            <button 
+            className="btn btn-primary"
+            type="button">Search</button>
         </div>
     );
 }
