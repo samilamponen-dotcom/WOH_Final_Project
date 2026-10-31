@@ -4,7 +4,6 @@ import Details from './pages/Details'
 import Compare from './pages/Compare'
 import Navbar from './components/NavBar'
 import Footer from './components/Footer'
-import SearchBar from './components/SearchBar'
 
 
 function App() {
