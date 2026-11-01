@@ -1,12 +1,16 @@
 function PokemonCard({pokemon}) {
+if(!PokemonCard) return null;
+
     return (
-        <div className="card">
+        <div className="card text-center">
             <img
-            className="pokemon-image"
-            src={pokemon.sprites.front_default}
-            alt={pokemon.name}
+                className="card-img-top"
+                src={pokemon.sprites.front_default}
+                alt={pokemon.name}
             />
-            <h2>{pokemon.name}</h2>
+            <div className = "card-body">
+                <h5 className = "card-title text-capitalize">{pokemon.name}</h5>
+            </div>
         </div>
     )
 }
