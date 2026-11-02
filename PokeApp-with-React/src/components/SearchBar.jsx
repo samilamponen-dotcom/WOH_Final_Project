@@ -2,19 +2,51 @@ import {useState} from 'react';
 
 function SearchBar({ onSearch }) {
     const [searchTerm, setSearchTerm] = useState("");
+    const [searchGeneration, setSearchGeneration] = useState(null);
     
     return (
-        <div className = "input-group">
-            <input
-                classname="form-control"
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search Pokémon"
-            />
-            <button 
-            className="btn btn-primary"
-            type="button">Search</button>
+        <div className = "card p-3 mb-4">
+            <h6>Search Pokémon by name:</h6>
+            <div className="input-group mb-3">
+                <input
+                    className="form-control"
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            onSearch(searchTerm);
+                        }
+                    }}
+                    placeholder="e.g. Pikachu, Charizard, Bulbasaur"
+                />
+                <button 
+                    className="btn btn-primary"
+                    type="button"
+                    onClick={() => onSearch(searchTerm)}
+                >
+                    Search
+                </button>
+            </div>
+
+            <h6>or show Pokémon from a specific generation:</h6>
+
+            <select
+                className="form-select"
+                value={searchGeneration}
+                onChange={(e) => setSearchGeneration(e.target.value)}
+            >
+                <option value={null}>All Generations</option>
+                <option value="1">Generation I</option>
+                <option value="2">Generation II</option>
+                <option value="3">Generation III</option>
+                <option value="4">Generation IV</option>
+                <option value="5">Generation V</option>
+                <option value="6">Generation VI</option>
+                <option value="7">Generation VII</option>
+                <option value="8">Generation VIII</option>
+                <option value="9">Generation IX</option>
+            </select>
         </div>
     );
 }

@@ -1,6 +1,6 @@
 const API_URL = "https://pokeapi.co/api/v2/";
 
-export async function fetchPokemonList(limit = 4, offset = 0) {
+export async function fetchPokemonList(limit, offset) {
     const response = await fetch(`${API_URL}pokemon?limit=${limit}&offset=${offset}`);
     
     if (!response.ok) {

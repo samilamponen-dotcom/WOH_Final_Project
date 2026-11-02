@@ -1,6 +1,8 @@
 import { usePokemon } from "../hooks/usePokemon";
 import PokemonCard from "../components/PokemonCard";
 import { usePokemonList } from "../hooks/usePokemonList";
+import SearchBar from "../components/SearchBar";
+
 
 function PokemonListItem({ name }) {
     const { pokemon, loading, error } = usePokemon(name);
@@ -19,6 +21,7 @@ function Home() {
     return (
         <div>
             <h1>Welcome to the Pokémon App!</h1>
+            <SearchBar />
             {loading && <p>Loading Pokémon...</p>}
             {error && <p>Error: {error}</p>}
             <div className="row g-3">
