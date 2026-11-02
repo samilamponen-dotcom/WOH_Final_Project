@@ -1,11 +1,11 @@
-function PokemonCard({pokemon}) {
-if(!PokemonCard) return null;
+export default function PokemonCard({pokemon}) {
+    if (!pokemon) return null;
 
     return (
         <div className="card text-center">
             <img
                 className="card-img-top"
-                src={pokemon.sprites.front_default}
+                src={pokemon.sprites?.front_default ?? ""}
                 alt={pokemon.name}
             />
             <div className = "card-body">
@@ -14,5 +14,3 @@ if(!PokemonCard) return null;
         </div>
     )
 }
-
-export default PokemonCard;
