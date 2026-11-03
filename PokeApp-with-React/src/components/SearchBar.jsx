@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-function SearchBar({ onSearch }) {
+function SearchBar({ onSearch , onGenerationChange }) {
     const [searchTerm, setSearchTerm] = useState("");
     const [searchGeneration, setSearchGeneration] = useState("");
     
@@ -34,7 +34,12 @@ function SearchBar({ onSearch }) {
             <select
                 className="form-select"
                 value={searchGeneration}
-                onChange={(e) => setSearchGeneration(e.target.value)}
+                onChange={(e) => {
+                    const generation = e.target.value;
+
+                    setSearchGeneration(generation);
+                    onGenerationChange(generation);   
+                }}
             >
                 <option value="">All Generations</option>
                 <option value="1">Generation I</option>

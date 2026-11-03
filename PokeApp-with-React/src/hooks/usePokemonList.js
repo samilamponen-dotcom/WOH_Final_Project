@@ -39,6 +39,12 @@ export function usePokemonListByGeneration(generation) {
             setLoading(true);
             setError(null);
 
+            if (!generation) {
+                setPokemonList([]);
+                setLoading(false);
+                return;
+            }
+
             try {
                 const data = await fetchPokemonByGeneration(generation);
                 setPokemonList(data);

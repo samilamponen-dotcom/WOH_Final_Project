@@ -5,7 +5,7 @@ export default function PokemonCard({pokemon}) {
         <div className="card text-center">
             <img
                 className="card-img-top"
-                src={pokemon.sprites?.front_default ?? ""}
+                src={pokemon.sprites?.front_default ?? null}
                 alt={pokemon.name}
             />
             <div className = "card-body">
