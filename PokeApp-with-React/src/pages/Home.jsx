@@ -1,6 +1,7 @@
 import { usePokemon } from "../hooks/usePokemon";
 import PokemonCard from "../components/PokemonCard";
 import { usePokemonList } from "../hooks/usePokemonList";
+import { usePokemonListByGeneration } from "../hooks/usePokemonList";
 import SearchBar from "../components/SearchBar";
 
 

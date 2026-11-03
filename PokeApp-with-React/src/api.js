@@ -23,3 +23,15 @@ export async function fetchPokemonDetails(pokemonName) {
 
     return data;
 }
+
+export async function fetchPokemonByGeneration(generation) {
+    const response = await fetch(`${API_URL}generation/${generation}`);
+
+    if (!response.ok) {
+        throw new Error("Failed to fetch Pokémon by generation");
+    }
+
+    const data = await response.json();
+
+    return data.pokemon_species;
+}

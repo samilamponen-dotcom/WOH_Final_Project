@@ -2,7 +2,7 @@ import {useState} from 'react';
 
 function SearchBar({ onSearch }) {
     const [searchTerm, setSearchTerm] = useState("");
-    const [searchGeneration, setSearchGeneration] = useState(null);
+    const [searchGeneration, setSearchGeneration] = useState("");
     
     return (
         <div className = "card p-3 mb-4">
@@ -36,7 +36,7 @@ function SearchBar({ onSearch }) {
                 value={searchGeneration}
                 onChange={(e) => setSearchGeneration(e.target.value)}
             >
-                <option value={null}>All Generations</option>
+                <option value="">All Generations</option>
                 <option value="1">Generation I</option>
                 <option value="2">Generation II</option>
                 <option value="3">Generation III</option>
