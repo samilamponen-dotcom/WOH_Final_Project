@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { usePokemon } from "../hooks/usePokemon";
 import PokemonCard from "../components/PokemonCard";
 import { usePokemonList } from "../hooks/usePokemonList";
-import { usePokemonListByGeneration } from "../hooks/usePokemonList";
 import SearchBar from "../components/SearchBar";
+
+const generationRanges = {
+    "": { limit: 100000, offset: 0 },
+    "1": { limit: 151, offset: 0 },
+    "2": { limit: 100, offset: 151 },
+    "3": { limit: 135, offset: 251 },
+    "4": { limit: 107, offset: 386 },
+    "5": { limit: 156, offset: 493 },
+    "6": { limit: 72, offset: 649 },
+    "7": { limit: 88, offset: 721 },
+    "8": { limit: 96, offset: 809 },
+    "9": { limit: 120, offset: 905 },
+};
 
 
 function PokemonListItem({ name }) {
@@ -19,14 +31,14 @@ function PokemonListItem({ name }) {
 
 function Home() {
     const [searchTerm, setSearchTerm] = useState("");
-    const [searchGeneration, setSearchGeneration] = useState("");
-    const allPokemon = usePokemonList();
-    const generationPokemon = usePokemonListByGeneration(searchGeneration);
+    const [searchGeneration, setSearchGeneration] = useState("1");
+    const { limit, offset } = generationRanges[searchGeneration] ?? generationRanges[""];
+    const { pokemonList, loading, error } = usePokemonList(limit, offset);
+    // const normalizedSearchTerm = searchTerm.trim().toLowerCase();
+    const filteredPokemon = pokemonList.filter(({ name }) =>
+        name.toLowerCase().includes(searchTerm.trim().toLowerCase())
+    );
 
-    // Determine which list of Pokémon to display based on the search term and generation
-    const pokemonList = searchGeneration ? generationPokemon.pokemonList ?? [] : allPokemon.pokemonList ?? [];
-    const loading = searchGeneration ? generationPokemon.loading : allPokemon.loading;
-    const error = searchGeneration ? generationPokemon.error : allPokemon.error;
     return (
         <div>
             <h1>Welcome to the Pokémon App!</h1>
@@ -37,7 +49,7 @@ function Home() {
             {loading && <p>Loading Pokémon...</p>}
             {error && <p>Error: {error}</p>}
             <div className="row g-3">
-                {pokemonList.map(({ name }) => (
+                {filteredPokemon.map(({ name }) => (
                     <div 
                         key={name}
                             className = "col-12 col-sm-6 col-md-4 col-lg-3">
@@ -45,6 +57,9 @@ function Home() {
                     </div>
                 ))}
             </div>
+            {!loading && !error && filteredPokemon.length === 0 && (
+                <p>No Pokémon found.</p>
+            )}
         </div>
     )
 }
