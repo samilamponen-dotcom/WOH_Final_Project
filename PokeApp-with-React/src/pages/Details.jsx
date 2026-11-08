@@ -1,5 +1,29 @@
+import { useParams } from "react-router-dom";
+import { usePokemon } from "../hooks/usePokemon";
+
+// Show details of a single Pokémon
 function Details() {
-    return <h1> Pokémon Details</h1>;
+    const { name } = useParams();
+    const { pokemon, loading, error } = usePokemon(name);
+
+    if (loading) {
+        return <p>Loading {name}...</p>;
+    }
+    if (error) {
+        return <p>Could not load {name}: {error}</p>;
+    }
+    if (!pokemon) {
+        return <p>Pokémon not found.</p>;
+    }
+
+    return (
+        <div>
+            <h1>{pokemon.name}</h1>
+            <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+            <p>Height: {pokemon.height}</p>
+            <p>Weight: {pokemon.weight}</p>
+        </div>
+    );
 }
 
 export default Details;

@@ -3,6 +3,7 @@ import { usePokemon } from "../hooks/usePokemon";
 import PokemonCard from "../components/PokemonCard";
 import { usePokemonList } from "../hooks/usePokemonList";
 import SearchBar from "../components/SearchBar";
+import { Link } from "react-router-dom";
 
 const generationRanges = {
     "": { limit: 100000, offset: 0 },
@@ -26,15 +27,20 @@ function PokemonListItem({ name }) {
     if (error) {
         return <p>Could not load {name}: {error}</p>;
     }
-    return pokemon ? <PokemonCard pokemon={pokemon} /> : null;
+    return pokemon ? (
+        <Link
+            to = {`/details/${name}`}
+        >
+            <PokemonCard pokemon={pokemon} />
+        </Link>
+    ) : null;
 }
-
+// Show list of Pokémon with search and generation filter
 function Home() {
     const [searchTerm, setSearchTerm] = useState("");
     const [searchGeneration, setSearchGeneration] = useState("1");
     const { limit, offset } = generationRanges[searchGeneration] ?? generationRanges[""];
     const { pokemonList, loading, error } = usePokemonList(limit, offset);
-    // const normalizedSearchTerm = searchTerm.trim().toLowerCase();
     const filteredPokemon = pokemonList.filter(({ name }) =>
         name.toLowerCase().includes(searchTerm.trim().toLowerCase())
     );
