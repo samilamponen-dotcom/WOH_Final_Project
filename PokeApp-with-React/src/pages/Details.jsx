@@ -6,6 +6,16 @@ import PokemonStats from "../components/PokemonStats";
 function Details() {
     const { name } = useParams();
     const { pokemon, loading, error } = usePokemon(name);
+    
+    if (!name) {
+        return (
+            <div>
+                <h5>No Pokémon was selected</h5>
+                <p>Please search and click a Pokémon at the homepage to show its details.</p>
+                <button className="btn btn-primary" onClick={() => window.location.href = "/"}>Go back to Homepage</button>
+            </div>
+        );
+    }
 
     if (loading) {
         return <p>Loading {name}...</p>;
@@ -13,8 +23,9 @@ function Details() {
     if (error) {
         return <p>Could not load {name}: {error}</p>;
     }
+
     if (!pokemon) {
-        return <p>Pokémon not found.</p>;
+        return <p>Could not find {name}.</p>;
     }
 
     return (
@@ -32,6 +43,7 @@ function Details() {
                 </p>
             ))}
             <PokemonStats pokemon={pokemon} />
+            <button className="btn btn-primary" onClick={() => window.location.href = "/"}>Go back to Homepage</button>
         </div>
     );
 }

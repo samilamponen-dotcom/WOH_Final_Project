@@ -7,6 +7,13 @@ export function usePokemon(pokemonName) {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        if (!pokemonName) {
+            setPokemon(null);
+            setLoading(false);
+            setError(null);
+            return;
+        }
+        
         const getPokemonDetails = async () => {
             setLoading(true);
             setError(null);
@@ -21,9 +28,8 @@ export function usePokemon(pokemonName) {
             }
         };
 
-        if (pokemonName) {
-            getPokemonDetails();
-        }
+
+        getPokemonDetails();
     }, [pokemonName]);
 
     return { pokemon, loading, error };

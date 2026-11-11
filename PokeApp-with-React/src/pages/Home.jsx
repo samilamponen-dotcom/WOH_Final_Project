@@ -30,6 +30,7 @@ function PokemonListItem({ name }) {
     return pokemon ? (
         <Link
             to = {`/details/${name}`}
+            className="text-decoration-none"
         >
             <PokemonCard pokemon={pokemon} />
         </Link>
@@ -48,6 +49,7 @@ function Home() {
     return (
         <div>
             <h1>Welcome to the Pokémon App!</h1>
+            <h6>Click on a Pokémon to view its details</h6>
             <SearchBar 
                 onSearch={setSearchTerm}
                 onGenerationChange={setSearchGeneration}
