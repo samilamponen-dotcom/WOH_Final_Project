@@ -18,23 +18,36 @@ ChartJS.register(
     Legend
 );
 
-function PokemonStats({ pokemon }) {
-    if (!pokemon || !pokemon.stats) return null;
+function PokemonStats({ pokemons }) {
+    if (!pokemons?.length) return null;
+
+    const labels = pokemons[0].stats.map((stat) => stat.stat.name);
+
+    const colors = [
+        { 
+            border: "rgb(54,162,235)",
+            background: "rgba(54,162,235,0.2)",
+        },
+        {
+            border: "rgb(255,206,86)",
+            background: "rgba(255,206,86,0.2)",
+        }, 
+        {
+            border: "rgb(75,192,192)",
+            background: "rgba(75,192,192,0.2)",
+        }
+    ];
+
+    const datasets = pokemons.map((pokemon, index) => ({
+        label: pokemon.name,
+        data: pokemon.stats.map((stat) => stat.base_stat),
+        borderColor: colors[index % colors.length].border,
+        backgroundColor: colors[index % colors.length].background,
+    }));
 
     const data = {
-        labels: pokemon.stats.map((stat) => stat.stat.name),
-        datasets: [
-            {
-                label: pokemon.name,
-                data: pokemon.stats.map((stat) => stat.base_stat),
-                backgroundColor: "rgba(255, 99, 132, 0.2)",
-                borderColor: "rgba(255, 99, 132, 1)",
-                pointBackgroundColor: "rgba(255, 99, 132, 1)",
-                pointBorderColor: "#fff",
-                pointHoverBackgroundColor: "#fff",
-                pointHoverBorderColor: "rgba(255, 99, 132, 1)",
-            },
-        ],
+        labels,
+        datasets,
     };
 
     return (
