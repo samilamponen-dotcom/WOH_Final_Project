@@ -6,7 +6,7 @@ import SearchBar from "../components/SearchBar";
 import { Link } from "react-router-dom";
 
 const generationRanges = {
-    "": { limit: 100000, offset: 0 },
+    "": { limit: 10000, offset: 0 },
     "1": { limit: 151, offset: 0 },
     "2": { limit: 100, offset: 151 },
     "3": { limit: 135, offset: 251 },
