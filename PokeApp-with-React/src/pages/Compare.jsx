@@ -25,7 +25,6 @@ function Compare() {
             <Select
                 closeMenuOnSelect={false}
                 components={makeAnimated()}
-                defaultValue={[pokemonList[0], pokemonList[1]]}
                 isMulti
                 options={pokemonList.map((pokemon) => ({
                     value: pokemon.name,

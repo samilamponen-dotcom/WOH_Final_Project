@@ -9,6 +9,7 @@ export default function PokemonCard({pokemon}) {
                 alt={pokemon.name}
             />
             <div className = "card-body">
+                <h6 className = "card-subtitle mb-2 text-muted">ID: #{pokemon.id}</h6>
                 <h5 className = "card-title text-capitalize">{pokemon.name}</h5>
             </div>
         </div>
