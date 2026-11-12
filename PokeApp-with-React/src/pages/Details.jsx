@@ -5,6 +5,27 @@ import { usePokemon } from "../hooks/usePokemon";
 function Details() {
     const { name } = useParams();
     const { pokemon, loading, error } = usePokemon(name);
+
+    const typeColors ={
+        normal: "#A8A77A",
+        fire: "#EE8130",
+        water: "#6390F0",
+        electric: "#F7D02C",
+        grass: "#7AC74C",
+        ice: "#96D9D6",
+        fighting: "#C22E28",
+        poison: "#A33EA1",
+        ground: "#E2BF65",
+        flying: "#A98FF3",
+        psychic: "#F95587",
+        bug: "#A6B91A",
+        rock: "#B6A136",
+        ghost: "#735797",
+        dragon: "#6F35FC",
+        dark: "#705746",
+        steel: "#B7B7CE",
+        fairy: "#D685AD",
+    }
     
     if (!name) {
         return (
@@ -29,7 +50,7 @@ function Details() {
 
     return (
         <div className="container mt-4">
-            <div className="card shadow-lg mx-auto" style={{ maxWidth: "800px"}}>
+            <div className="card shadow-lg mx-auto" style={{ maxWidth: "800px", backgroundColor: typeColors[pokemon.types[0].type.name] ?? "#fff" }}>
                 <div className="card-body text-center">
                     <h1 className = "card-title text-capitalize">{pokemon.name}</h1>
                     <h5 className = "card-subtitle mb-2 text-muted">ID: #{pokemon.id}</h5>
@@ -39,22 +60,33 @@ function Details() {
                     />
                     <div className="row text-center mb-3">
                         <div className="col">
-                            <h6>Height </h6>
-                            <p>Height: {pokemon.height}</p>
+                            <h6>Height: </h6>
+                            <p>{pokemon.height}</p>
+                            <h6>Types:</h6>
+                            <p className = "text-capitalize">{pokemon.types.map((type) => type.type.name).join(", ")}</p>
                         </div>
                         <div className="col">
-                            <h6>Weight </h6>
-                            <p>Weight: {pokemon.weight}</p>
+                            <h6>Weight: </h6>
+                            <p>{pokemon.weight}</p>
+                            <h6>Abilities:</h6>
+                            <p className = "text-capitalize">{pokemon.abilities.map((ability) => ability.ability.name).join(", ")}</p>
                         </div>
                     </div>
-                    <p>Types: {pokemon.types.map((type) => type.type.name).join(", ")}</p>
-                    <p>Abilities: {pokemon.abilities.map((ability) => ability.ability.name).join(", ")}</p>
-                    <p>Stats:</p>
                     {pokemon.stats.map((stat) => (
-                        <p key={stat.stat.name}>
-                            {stat.stat.name}: {stat.base_stat}
-                        </p>
-                    ))}
+                        <div key={stat.stat.name} className="mb-2">
+                            <div className="d-flex justify-content-between">
+                                <span>{stat.stat.name}</span>
+                                <span>{stat.base_stat}</span>
+                            </div>
+
+                            <div className="progress">
+                                <div
+                                    className="progress-bar"
+                                    style={{ width: `${Math.min(stat.base_stat,150) / 150 * 100}%` }}
+                                />
+                            </div>
+                        </div>
+                        ))}
                     <button className="btn btn-primary" onClick={() => window.location.href = "/"}>Go back to Homepage</button>
                 </div>
             </div>
