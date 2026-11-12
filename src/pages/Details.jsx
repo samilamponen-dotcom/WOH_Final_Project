@@ -35,7 +35,7 @@ function Details() {
             <div>
                 <h5>No Pokémon was selected</h5>
                 <p>Please search and click a Pokémon at the homepage to show its details.</p>
-                <button className="btn btn-primary" onClick={() => window.location.href = "/"}>Go back to Homepage</button>
+                <button className="btn btn-primary" onClick={() => navigate("/")}>Go back to Homepage</button>
             </div>
         );
     }
