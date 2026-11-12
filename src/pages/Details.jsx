@@ -1,10 +1,13 @@
 import { useParams } from "react-router-dom";
 import { usePokemon } from "../hooks/usePokemon";
+import { useNavigate } from "react-router-dom";
 
 // Show details of a single Pokémon
 function Details() {
     const { name } = useParams();
     const { pokemon, loading, error } = usePokemon(name);
+
+    const navigate = useNavigate();
 
     const typeColors ={
         normal: "#A8A77A",
@@ -87,7 +90,7 @@ function Details() {
                             </div>
                         </div>
                         ))}
-                    <button className="btn btn-primary" onClick={() => window.location.href = "/WOH_Final_Project/"}>Go back to Homepage</button>
+                    <button className="btn btn-primary" onClick={() => navigate("/")}>Go back to Homepage</button>
                 </div>
             </div>
         </div>
