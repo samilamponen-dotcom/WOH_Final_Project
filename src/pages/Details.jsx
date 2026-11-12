@@ -87,7 +87,7 @@ function Details() {
                             </div>
                         </div>
                         ))}
-                    <button className="btn btn-primary" onClick={() => window.location.href = "/"}>Go back to Homepage</button>
+                    <button className="btn btn-primary" onClick={() => window.location.href = "/WOH_Final_Project/"}>Go back to Homepage</button>
                 </div>
             </div>
         </div>
