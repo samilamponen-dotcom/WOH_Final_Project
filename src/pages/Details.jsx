@@ -57,7 +57,7 @@ function Details() {
                 <div className="card-body text-center">
                     <h1 className = "card-title text-capitalize">{pokemon.name}</h1>
                     <h5 className = "card-subtitle mb-2 text-muted">ID: #{pokemon.id}</h5>
-                    <img 
+                    <img className="card-img-top mb-3"
                         src={pokemon.sprites?.other?.home?.front_default ?? pokemon.sprites?.front_default ?? null}
                         alt={pokemon.name}
                     />
