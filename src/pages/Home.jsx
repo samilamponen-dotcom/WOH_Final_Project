@@ -47,9 +47,11 @@ function Home() {
     );
 
     return (
-        <div>
-            <h1>Welcome to the Pokémon App!</h1>
-            <h6>Click on a Pokémon to view its details</h6>
+        <div style={{ backgroundColor: "#3B4CCA", minHeight: "100vh", padding: "2rem" }}>
+            <h1 style={{ color: "#f0eee7" }}>
+                Welcome to the Pokémon App!</h1>
+            <h6 style={{ color: "#f0eee7" }}>
+                Click on a Pokémon to view its details</h6>
             <SearchBar 
                 onSearch={setSearchTerm}
                 onGenerationChange={setSearchGeneration}

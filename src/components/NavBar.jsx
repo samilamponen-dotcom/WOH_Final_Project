@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 function NavBar() {
   return (
-    <nav className="navbar">
+    <nav className="navbar" style={{ backgroundColor: "#FFCB05", padding: "0.5rem 1rem" }}>
         <div className="container">
             <Link to="/" className="navbar-brand">PokéApp</Link>
 

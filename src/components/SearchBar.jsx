@@ -5,7 +5,7 @@ function SearchBar({ onSearch , onGenerationChange }) {
     const [searchGeneration, setSearchGeneration] = useState("1");
     
     return (
-        <div className = "card p-3 mb-4">
+        <div className = "card p-3 mb-4" style={{ backgroundColor: "#FFCB05" }}>
             <h6>Search Pokémon by name:</h6>
             <div className="input-group mb-3">
                 <input

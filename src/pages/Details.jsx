@@ -41,14 +41,16 @@ function Details() {
     }
 
     if (loading) {
-        return <p>Loading {name}...</p>;
+        return <p>
+            Loading {name}...</p>;
     }
     if (error) {
-        return <p>Could not load {name}: {error}</p>;
+        return <p>
+            Could not load {name}: {error}</p>;
     }
 
     if (!pokemon) {
-        return <p>Could not find {name}.</p>;
+        return <p> Could not find {name}.</p>;
     }
 
     return (

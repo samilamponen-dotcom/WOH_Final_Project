@@ -19,7 +19,7 @@ function Compare() {
         ].filter(Boolean);
 
     return (
-        <div>
+        <div >
             <h1>Compare Pokémons</h1>
             <h5>Select up to three Pokémon to compare</h5>
             <Select
