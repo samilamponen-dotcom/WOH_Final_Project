@@ -5,18 +5,30 @@ import { usePokemon } from "../hooks/usePokemon";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
+const MaxSelections = 3;
 
 function Compare() {
     const [pokemon1, setPokemon1] = useState(null);
     const [pokemon2, setPokemon2] = useState(null);
     const [pokemon3, setPokemon3] = useState(null);
     const { pokemonList } = usePokemonList(10000,0);
+    const selectedPokemon = [pokemon1, pokemon2, pokemon3].filter(Boolean);
 
     const pokemons = [
         usePokemon(pokemon1).pokemon,
         usePokemon(pokemon2).pokemon,
         usePokemon(pokemon3).pokemon,
         ].filter(Boolean);
+
+    function handleChange(options) {
+        const selectedNames = (options ?? [])
+            .slice(0, MaxSelections)
+            .map((option) => option.value);
+
+        setPokemon1(selectedNames[0] ?? null);
+        setPokemon2(selectedNames[1] ?? null);
+        setPokemon3(selectedNames[2] ?? null);
+    }
 
     return (
         <div >
@@ -30,12 +42,11 @@ function Compare() {
                     value: pokemon.name,
                     label: pokemon.name,
                 }))}
-                onChange={(selectedOptions) => {
-                    const selectedPokemons = selectedOptions.map((option) => option.value);
-                    setPokemon1(selectedPokemons[0]);
-                    setPokemon2(selectedPokemons[1]);
-                    setPokemon3(selectedPokemons[2]);
-                }}
+                isOptionDisabled={(option) =>
+                    selectedPokemon.length >= MaxSelections &&
+                    !selectedPokemon.includes(option.value)
+                }
+                onChange={handleChange}
             />
             <PokemonStats pokemons={pokemons} />
         </div>
