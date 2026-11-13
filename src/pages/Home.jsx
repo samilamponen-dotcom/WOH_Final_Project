@@ -39,7 +39,7 @@ function PokemonListItem({ name }) {
 // Show list of Pokémon with search and generation filter
 function Home() {
     const [searchTerm, setSearchTerm] = useState("");
-    const [searchGeneration, setSearchGeneration] = useState("1");
+    const [searchGeneration, setSearchGeneration] = useState("");
     const { limit, offset } = generationRanges[searchGeneration] ?? generationRanges[""];
     const { pokemonList, loading, error } = usePokemonList(limit, offset);
     const filteredPokemon = pokemonList.filter(({ name }) =>

@@ -2,7 +2,7 @@ import {useState} from 'react';
 
 function SearchBar({ onSearch , onGenerationChange }) {
     const [searchTerm, setSearchTerm] = useState("");
-    const [searchGeneration, setSearchGeneration] = useState("1");
+    const [searchGeneration, setSearchGeneration] = useState("");
     
     return (
         <div className = "card p-3 mb-4" style={{ backgroundColor: "#FFCB05" }}>
