@@ -38,3 +38,29 @@
   border-inline: 2px solid var(--border);
   min-height: 100svh;
 }
+.pokemon-pagination .page-link {
+  color: #3B4CCA;
+  background-color: #FFCB05;
+  border-color: #FFCB05;
+  margin: 0 0.15rem;
+  border-radius: 0.375rem;
+}
+
+.pokemon-pagination .page-link:hover {
+  background-color: #f0eee7;
+  border-color: #f0eee7;
+}
+
+.pokemon-pagination .page-item.active .page-link {
+  color: #f0eee7;
+  background-color: #3B4CCA;
+  border-color: #FFCB05;
+}
+
+.pokemon-pagination .page-item.disabled .page-link {
+  opacity: 0.6;
+}
+
+.pokemon-pagination .page-link:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 203, 5, 0.35);
+}
